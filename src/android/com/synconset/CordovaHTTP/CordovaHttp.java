@@ -38,12 +38,20 @@ public abstract class CordovaHttp {
     
     private String urlString;
     private Map<?, ?> params;
+    private String bodyParam;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
     
     public CordovaHttp(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
         this.urlString = urlString;
         this.params = params;
+        this.headers = headers;
+        this.callbackContext = callbackContext;
+    }
+
+    public CordovaHttp(String urlString, String bodyParam, Map<String, String> headers, CallbackContext callbackContext) {
+        this.urlString = urlString;
+        this.bodyParam = bodyParam;
         this.headers = headers;
         this.callbackContext = callbackContext;
     }
@@ -68,6 +76,10 @@ public abstract class CordovaHttp {
     
     protected Map<?, ?> getParams() {
         return this.params;
+    }
+
+    protected String getBodyParam() {
+        return this.bodyParam;
     }
     
     protected Map<String, String> getHeaders() {

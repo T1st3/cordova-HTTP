@@ -66,6 +66,13 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             HashMap<String, String> headersMap = this.addToMap(this.globalHeaders, headers);
             CordovaHttpPost post = new CordovaHttpPost(urlString, paramsMap, headersMap, callbackContext);
             cordova.getThreadPool().execute(post);
+        } else if (action.equals("postBody")) {
+            String urlString = args.getString(0);
+            String bodyParam = args.getString(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.addToMap(this.globalHeaders, headers);
+            CordovaHttpPostBody postBody = new CordovaHttpPostBody(urlString, bodyParam, headersMap, callbackContext);
+            cordova.getThreadPool().execute(postBody);
         } else if (action.equals("useBasicAuth")) {
             String username = args.getString(0);
             String password = args.getString(1);
