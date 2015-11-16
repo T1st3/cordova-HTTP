@@ -31,9 +31,15 @@ public class CordovaHttpPostBody extends CordovaHttp implements Runnable {
             request.headers(this.getHeaders());
             request.send(this.getBodyParam());
             int code = request.code();
+            JSONObject responseHeaders = new JSONObject();
+            responseHeaders.put("Date", request.header("Date");
+            responseHeaders.put("Pragma", request.header("Pragma");
+            responseHeaders.put("Content-Type", request.header("Content-Type");
+            responseHeaders.put("Set-Cookie", request.header("Set-Cookie");
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
             response.put("status", code);
+            response.put("headers", responseHeaders);
             if (code >= 200 && code < 300) {
                 response.put("data", body);
                 this.getCallbackContext().success(response);
